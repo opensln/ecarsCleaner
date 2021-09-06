@@ -1,0 +1,85 @@
+﻿@model eCarsClean.Models.Car
+
+<div class="carDetailsPageContainer">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => Model.Manufacturer.ManufacturerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Manufacturer.ManufacturerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.CarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.CarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.MilesPerCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => Model.MilesPerCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => Model.Likes)
+        </dt>
+
+        <dd>
+            <div class="mobileLikeTarget_@Model.Id">1 waiting</div>
+        </dd>
+        <div>
+            <img src="~/Content/images/@Html.DisplayFor(model => Model.Image)" width="200" style=" display: block; margin-left: auto; margin-right: auto;" />
+        </div>
+
+    </dl>
+    <div class="detailsPageBtnHolder">
+        @Html.ActionLink(" Edit", "EditCarEntry", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-th-list btn btn-primary" })
+        @Html.ActionLink(" Delete", "Delete", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+        <div class="mobileThumb" data-likeId="@Model.Id">
+            @using (Ajax.BeginForm(
+                             actionName: "Like",
+                             controllerName: "Cars",
+                             routeValues: new { Id = Model.Id },
+                             ajaxOptions: new AjaxOptions
+                             {
+                                 UpdateTargetId = Model.Id.ToString(),
+                                 InsertionMode = InsertionMode.Replace
+                             }
+                             ))
+            {
+                <input  type="image" src="~/Content/images/likeImg/like.png" width="25" alt="Submit">
+            }
+        </div>
+        <div class="mobileThumb" data-likeId="@Model.Id">
+            @using (Ajax.BeginForm(
+                             actionName: "DisLike",
+                             controllerName: "Cars",
+                             routeValues: new { Id = Model.Id },
+                             ajaxOptions: new AjaxOptions
+                             {
+                                 UpdateTargetId = Model.Id.ToString(),
+                                 InsertionMode = InsertionMode.Replace
+                             }
+                             ))
+
+            {
+                <input type="image" src="~/Content/images/likeImg/dislike.png" width="25" alt="Submit">
+            }
+        </div>
+    </div>
+
+</div>

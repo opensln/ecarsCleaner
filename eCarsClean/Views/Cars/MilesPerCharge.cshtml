@@ -1,0 +1,97 @@
+﻿@model IEnumerable<eCarsClean.Models.Car>
+
+@{
+    ViewBag.Title = "Miles Per Charge Chart";
+}
+
+    <div id="MilesPerChargeBanner">
+        <h2 id="mpcTitle">Miles Per Charge Comparison</h2>
+    </div>
+    <div class="container">
+
+            <h2 id="mpcChartTitle">Miles Per Charge Comparison</h2>
+  
+        @*- - - - -Horizontal Full Width Graph- - - - -*@
+
+        <div id="barComparison" style="line-height:5px; border: solid 2px #00004d;border-radius:20px;padding:20px 0px 20px 0px;margin-bottom:20px;">
+
+            @foreach (var item in Model)
+            {
+                <p id="lab_@Html.DisplayFor(modelItem => item.Id)" style="padding-left:10px;"> @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName) @Html.DisplayFor(modelItem => item.CarModel) </p>
+
+                <div id="fig_@Html.DisplayFor(modelItem => item.Id)" class="mpcBarh" style="width:@Html.DisplayFor(modelItem => item.MilesPerCharge)px; background-color:#00004d;height:20px;float:left; border-radius:0px 5px 5px 0px;">
+                </div>
+                <p class="mileageAmount" style="line-height:20px;">&nbsp @Html.DisplayFor(modelItem => item.MilesPerCharge) </p>
+
+                <hr style="border-color:#00004d; margin:10px 0px 10px 0px;" />
+            }
+        </div>
+        @*- - - - - - - - -Vertical Pixel Graph - - - - - - - - - -*@
+
+        <div id="vbarComparison" style="height:auto; border: solid 2px #00004d;border-radius:20px;padding:20px 0px 20px 0px;margin-bottom:20px;position:relative;">
+            <p id="y_axisLabel">Miles Per Charge</p>
+            <div class="vChartHolder" style="text-align:center;height:435px;">
+
+                @foreach (var item in Model)
+
+                {
+                    <div class="vBarWidthConstraint" style="display:inline-block; width:7%;text-align:center;margin: 0px 5px 0px 5px;height:400px;">
+
+                        <p id="vbarTotal" class="vBarMileage" style="line-height:20px;display:inline-block;">&nbsp @Html.DisplayFor(modelItem => item.MilesPerCharge) </p>
+
+                        <div id="vfig_@Html.DisplayFor(modelItem => item.Id)" class="mpcvBar" style="height:10px; background-color:#00004d; border-radius:5px 5px 0px 0px;"></div>
+
+                        <p id="vlab_@Html.DisplayFor(modelItem => item.Id)" style="white-space:nowrap;overflow: hidden; text-overflow: ellipsis; "> @Html.DisplayFor(modelItem => item.Manufacturer.ManufacturerName) @Html.DisplayFor(modelItem => item.CarModel) </p>
+                    </div>
+                }
+            </div>
+            <p id="x_axisLabel" style="text-align:center;">Car Models</p>
+        </div>
+
+    </div>
+
+    <script>
+        var collectionOfInputs = document.getElementsByClassName("mileageAmount");
+
+        var arrayOfInputValues = [];
+
+        for (var i = 0; i < collectionOfInputs.length; i++) {
+            arrayOfInputValues.push(parseInt(collectionOfInputs[i].innerText));
+        }
+
+        var MaxValueOfArray = Math.max(...arrayOfInputValues);
+
+        var scaleFactor = 90 / MaxValueOfArray;
+
+        var collectionOfPercentageBoxes = document.getElementsByClassName("mpcBarh");
+
+        for (var i = 0; i < arrayOfInputValues.length; i++) {
+
+            collectionOfPercentageBoxes[i].style.width = (Math.round(arrayOfInputValues[i] * scaleFactor)) + "%";
+
+        }
+
+        //--Vbar Logic --
+
+        var collectionOfInputsV = document.getElementsByClassName("vBarMileage");
+
+        var arrayOfInputValuesV = [];
+
+        for (var i = 0; i < collectionOfInputsV.length; i++) {
+            arrayOfInputValuesV.push(parseInt(collectionOfInputsV[i].innerText));
+        }
+
+        var MaxValueOfArrayV = Math.max(...arrayOfInputValuesV);
+
+        var collectionOfMpcBarsV = document.getElementsByClassName("mpcvBar");
+
+        var collectionOfWidthConstraintsV = document.getElementsByClassName("vBarWidthConstraint");
+
+        for (var i = 0; i < arrayOfInputValuesV.length; i++) {
+
+            collectionOfMpcBarsV[i].style.height = (Math.round(arrayOfInputValuesV[i] * scaleFactor)) + "%";
+
+            collectionOfWidthConstraintsV[i].style.height = (Math.round(arrayOfInputValuesV[i] * scaleFactor)) + "%";
+
+        }
+    </script>

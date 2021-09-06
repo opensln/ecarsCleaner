@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+
+
+</style>
+
+<div class="jumbotron homepageBanner">
+    <h2 id="homePageTitle" style="text-align:center;">Electric Cars Database</h2>
+</div>
+
+<div class="container body-content">
+    <div row>
+        <div class="col-sm-4">
+            <div class="mainPageBox">
+                <h3 class="mainPageBoxTitle">Cars List</h3>
+                <p>
+                    A table showing information about electric cars inlcuding their prices and average miles per charge.
+                </p>
+                <p class="mainPage"><a class="btn btn-primary" href="~/Cars">Go &raquo;</a></p>
+            </div>
+       
+        </div>
+
+        <div class="col-sm-4">
+            <div class="mainPageBox">
+                <h3 class="mainPageBoxTitle">Manufacturers List</h3>
+                <p>
+                    A table showing the details of the car manufacturers for the listed cars.
+                </p>
+                <p class="mainPage"><a class="btn btn-primary" href="~/Manufacturers">Go &raquo;</a></p>
+            </div>
+         
+        </div>
+
+        <div class="col-sm-4">
+            <div class="mainPageBox">
+                <h3 class="mainPageBoxTitle">Miles Per Charge Chart</h3>
+                <p>
+                    A bar chart showing average miles per charge for the listed cars.
+                </p>
+                <p class="mainPage"><a class="btn btn-primary" href="~/Cars/MilesPerCharge">Go &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>

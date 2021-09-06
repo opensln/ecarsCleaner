@@ -1,0 +1,58 @@
+﻿@model eCarsClean.Models.Car
+
+@{
+    ViewBag.Title = "Car Details";
+}
+
+
+<style>
+
+</style>
+<div class="container">
+   
+    <div class="carDetailsPageContainer">
+        <h2 class="detailsItemHeading">Details</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Manufacturer.ManufacturerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Manufacturer.ManufacturerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarModel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarModel)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MilesPerCharge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MilesPerCharge)
+            </dd>
+            <div>
+                <img src="~/Content/images/@Html.DisplayFor(model => model.Image)" width="200" style=" display: block; margin-left: auto; margin-right: auto;" />
+            </div>
+        </dl>
+        <div class="detailsPageBtnHolder">
+            @Html.ActionLink("Edit", "EditCarEntry", new { Id = Model.Id }, new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Back to List", "Index", " ", new { @class = "btn btn-default" })
+        </div>
+    </div>
+ 
+</div>

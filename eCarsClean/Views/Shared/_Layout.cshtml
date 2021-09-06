@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCars - Electric Cars Database</title>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        .mainPageNavbar {
+            background-color: #00004d;
+            border: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainPageNavbar navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("eCars", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Cars List", "Index", "Cars")</li>
+                    <li>@Html.ActionLink("Manufacturers List", "Index", "Manufacturers")</li>
+                    <li>@Html.ActionLink("Miles Per Charge", "MilesPerCharge", "Cars")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="containerx body-contentx">
+        @RenderBody()
+        <hr />
+        <footer style="text-align:center">
+            <p>&copy; @DateTime.Now.Year - OpenSln</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

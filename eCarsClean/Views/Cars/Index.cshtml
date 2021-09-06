@@ -1,0 +1,132 @@
+﻿@model eCarsClean.ViewModels.CarsViewModel
+
+@{
+    ViewBag.Title = "Cars Information";
+}
+
+<style>
+  
+</style>
+
+<div id="carsBanner">
+    <h1 id="carsTitle">Electric Cars Database</h1>
+</div>
+<div class="container body-content deskTopContainer">
+    <div class="carsCreateBtn">
+        @Html.ActionLink("Add New Car", "CreateCarEntry", "Cars", new { @class = "btn btn-primary" })
+    </div>
+
+    <table id="myTable" class="table">
+        <colgroup>
+            <col span="1" style="width: 8%;"> @*//--Company*@
+            <col span="1" style="width: 8%;"> @*//--Model*@
+            <col span="1" style="width: 10%;"> @*//--Price*@
+            <col span="1" style="width: 8%;"> @*//--MiesPerCharge*@
+            <col span="1" style="width: 20%;"> @*//--Image*@
+            @*<col span="1" style="width: 20%;"> //--Video*@
+            <col span="1" style="width: 5%;">  @*//--Likes*@
+            <col span="1" style="width: 5%;">  @*//--LikesThumb*@
+            <col span="1" style="width: 5%;">  @*//--DisLikesThumb*@
+            <col class="crudColumn" span="1"> @*//---CRUD-->*@
+        </colgroup>
+
+        <thead>
+
+            <tr style="text-align:center; background-color: #00004d; color:white;">
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    M.P.C.
+                </th>
+                <th>
+                    Image
+                </th>
+                @*<th>
+                        Video
+                </th>*@
+                <th>
+                    Likes
+                </th>
+                <th>
+                    Vote Up
+                </th>
+                <th>
+                    Vote Down
+                </th>
+                <th>
+                    Crud Controls
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.CarList)
+            {
+                <tr id="@item.Id">
+                    @Html.Action("_CarRowPartial", new { Id = item.Id })
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<div class="mobileContainer body-content">
+    <div class="carsCreateBtn">
+        @Html.ActionLink("Add New Car", "CreateCarEntry", "Cars", new { @class = "btn btn-primary" })
+    </div>
+
+    @foreach (var item in Model.CarList)
+    {
+        <div id="@item.Id">
+            @Html.Action("_CarMobilePartial", new { Id = item.Id })
+        </div>
+    }
+
+</div>
+
+<script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let mobileThumbCollection = document.querySelectorAll(".mobileThumb");
+
+        mobileThumbCollection.forEach(function (itemObj) {
+
+            updateMobileLikes(itemObj);
+
+            itemObj.onclick = function () {
+
+                setTimeout(function () {
+                    updateMobileLikes(itemObj);
+                }, 1000);
+            }
+
+            window.addEventListener("resize", function () {
+                updateMobileLikes(itemObj);
+            });
+        });
+
+       function updateMobileLikes(elem) {
+            let mobileLikeId = elem.getAttribute("data-likeId");
+            let desktopLikesTotalElem = document.querySelector(".carRowTarget_" + mobileLikeId);
+            document.querySelector(".mobileLikeTarget_" + mobileLikeId).innerHTML = desktopLikesTotalElem.getAttribute("data-likesValue");
+        }
+     
+    });
+  
+</script>

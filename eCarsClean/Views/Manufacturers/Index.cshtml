@@ -1,0 +1,160 @@
+﻿@model IEnumerable<eCarsClean.Models.Manufacturer>
+
+@{
+    ViewBag.Title = "Manufacturer Table"; //--Title for the tab
+}
+
+<div id="ManufacturersBanner">
+    <h2 id="ManufacturersTitle" style="text-align:center;">Manufacturers Database</h2>
+</div>
+<div class="container deskTopContainer">
+    <div class="ManufacturersCreateBtn">
+        @Html.ActionLink("Add New Manufacturer", "Create", "Manufacturers", new { @class = "btn btn-primary" })
+    </div>
+    <table id="myTable" class="table">
+        <colgroup>
+            <col span="1" style="width: 10%;" />
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            @*<col span="1" style="width: 30%;">*@
+        </colgroup>
+
+        <thead>
+            <tr style="background-color: #00004d;color:white;">
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Postcode
+                </th>
+                <th>
+                    Tel
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Web Site
+                </th>
+                <th>
+                    Crud Controls
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManufacturerName)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.addressLine1)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Postcode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td class="wrappable">
+
+                        <a href="https://@Html.DisplayFor(modelItem => item.WebSite)" target="_blank">@Html.DisplayFor(modelItem => item.WebSite)</a>
+                    </td>
+                    <td style="text-align:center;">
+                        @Html.ActionLink(" Details", "ManufacturerDetails", new { Id = item.Id }, new { @class = "glyphicon glyphicon-edit btn btn-warning" })
+                        @Html.ActionLink(" Edit", "Edit", new { Id = item.Id }, new { @class = "glyphicon glyphicon-th-list btn btn-primary" })
+                        @Html.ActionLink(" Delete", "Delete", new { Id = item.Id }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="mobileContainer body-content">
+    <div class="ManufacturersCreateBtn">
+        @Html.ActionLink("Add New Manufacturer", "Create", "Manufacturers", new { @class = "btn btn-primary" })
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="manufacturerDetailsContainer">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ManufacturerName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.ManufacturerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Postcode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.Postcode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.Tel)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.WebSite)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.WebSite)
+                </dd>
+
+            </dl>
+            <div class="detailsPageBtnHolder">
+                    @Html.ActionLink(" Edit", "Edit", new { Id = item.Id }, new { @class = "glyphicon glyphicon-th-list btn btn-primary" })
+                    @Html.ActionLink(" Delete", "Delete", new { Id = item.Id }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+            </div>
+        </div>
+    }
+
+</div>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+

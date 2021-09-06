@@ -1,0 +1,52 @@
+﻿@model eCarsClean.Models.Car
+
+<td>@Html.DisplayFor(model => Model.Manufacturer.ManufacturerName)</td>
+<td>@Html.DisplayFor(model => Model.CarModel)</td>
+<td class="priceColumn">@Html.DisplayFor(model => Model.Price)</td>
+<td class="mpcColumn">@Html.DisplayFor(model => Model.MilesPerCharge)</td>
+<td>
+    <img src="~/Content/images/@Html.DisplayFor(model => Model.Image)" width="150" style="display: block; margin-left: auto; margin-right: auto;" />
+</td>
+@*<td>
+    <iframe src="https://www.youtube-nocookie.com/embed/@Html.DisplayFor(m => Model.Video)" width="200" height="160"></iframe>
+</td>*@
+<td><span class="likesColumn carRowTarget_@Model.Id" data-likesValue="@Model.Likes">@Html.DisplayFor(modelItem => Model.Likes) </span></td>
+<td>
+    @using (Ajax.BeginForm(
+                     actionName: "Like",
+                     controllerName: "Cars",
+                     routeValues: new { Id = Model.Id },
+                     ajaxOptions: new AjaxOptions
+                     {
+                         UpdateTargetId = Model.Id.ToString(),
+                         InsertionMode = InsertionMode.Replace
+                     }
+                     ))
+    {
+        <input class="deskTopThumb" type="image" src="~/Content/images/likeImg/like.png" width="25" alt="Submit">
+    }
+</td>
+<td>
+    @using (Ajax.BeginForm(
+                     actionName: "DisLike",
+                     controllerName: "Cars",
+                     routeValues: new { Id = Model.Id },
+                     ajaxOptions: new AjaxOptions
+                     {
+                         UpdateTargetId = Model.Id.ToString(),
+                         InsertionMode = InsertionMode.Replace
+                     }
+                     ))
+
+    {
+        <input class="deskTopThumb" type="image" src="~/Content/images/likeImg/dislike.png" width="25" alt="Submit">
+    }
+</td>
+
+<td  style="text-align:center; padding: 2px;">
+
+    @Html.ActionLink(" Details", "CarDetails", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-edit btn btn-warning" })
+    @Html.ActionLink(" Edit", "EditCarEntry", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-th-list btn btn-primary" })
+    @Html.ActionLink(" Delete", "Delete", new { Id = Model.Id }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+
+</td>

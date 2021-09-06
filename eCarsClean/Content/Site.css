@@ -1,0 +1,254 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.form-control {
+    max-width: 100%;
+}
+
+/*---Custom Css---*/
+
+/*---Start Banners Global---*/
+.homepageBanner,
+#carsBanner,
+#ManufacturersBanner,
+#MilesPerChargeBanner {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*---End Banners Global---*/
+
+/*---Start Titles Global---*/
+
+#homePageTitle,
+#carsTitle,
+#ManufacturersTitle,
+#mpcTitle {
+    font-family: Georgia;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: rgba(100, 100, 100, 0.60);
+    color: white;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    padding: 10px 20px 10px 20px;
+}
+
+    .homepageBanner {
+    background-image: url('/Content/images/bgimgs/road-3133502_1920.jpg');
+    height: 45vh;
+}
+
+.mainPageBoxTitle {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.mainPageBox {
+    height: 200px;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 10px;
+    padding: 10px 20px 0 20px;
+    text-align: center;
+}
+
+.mainPage {
+    text-align: center;
+}
+
+/*---Cars Index---*/
+
+th {
+    text-align: center;
+}
+
+td {
+    overflow: hidden;
+    white-space: nowrap;
+    border: solid black 1px;
+    white-space: normal;
+}
+
+table {
+    table-layout: fixed;
+}
+
+#carsBanner {
+    background-image: url('/Content/images/bgimgs/CarsRow_2.jpg');
+}
+
+.carsCreateBtn {
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+
+.likesColumn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.priceColumn,
+.mpcColumn {
+    text-align: center;
+}
+.addCarContainer,
+.carDetailsPageContainer,
+.manufacturerDetailsContainer,
+.deletePageContainer {
+    max-width: 300px;
+    margin: 20px auto 0 auto;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.editCarContainer,
+.editManufacturerContainer {
+    margin: 0 auto 0 auto;
+    padding: 10px;
+}
+
+.detailsItemHeading,
+.editCarHeading,
+.addCarHeading,
+.deleteItemHeading,
+.addManufacturerHeading,
+.editManufacturerHeading {
+    text-align: center;
+}
+
+.addCarBtnHolder,
+.detailsPageBtnHolder,
+.editCarBtnHolder,
+.deletePageBtnHolder,
+.editManufacturerBtnHolder,
+.addManufacturerBtnHolder {
+    text-align: center;
+}
+
+.deleteItemMsg {
+    text-align: center;
+    color: red;
+}
+
+/*---mobileContainer---*/
+
+.mobileContainer {
+    display: none;
+}
+
+.mobileThumb {
+    position: relative;
+    bottom: -10px;
+    display: inline-block;
+}
+
+@media only screen and (min-width: 768px) {
+    .manufacturerDetailsContainer {
+        max-width: 500px;
+    }
+}
+
+@media only screen and (max-width:640px) {
+    .deskTopContainer {
+        display: none;
+    }
+
+    .mobileContainer {
+        display: block;
+    }
+}
+
+/*---MAnufacturer Index---*/
+
+#ManufacturersBanner {
+    background-image: url('/Content/images/bgimgs/ManufacturingBanner.jpg');
+}
+
+.ManufacturersCreateBtn {
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+
+.crudColumn {
+    width: 15%;
+}
+
+@media only screen and (min-width:992px) {
+    .crudColumn {
+        width: 30%;
+    }
+}
+/*---Miles Per Charge---*/
+#MilesPerChargeBanner {
+    background-image: url('/Content/images/bgimgs/road-3133502_1920.jpg');
+}
+
+#mpcChartTitle {
+    font-family: Georgia;
+    font-size: 3rem;
+    text-align: center;
+    color: #00004d;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 25%;
+    padding: 10px 5px 10px 5px;
+}
+
+#y_axisLabel {
+    transform: rotate(-90deg);
+    margin-left: 0;
+    position: absolute;
+    left: 0px;
+    top: 235px;
+}
+
+@media only screen and (max-width: 485px) {
+    #y_axisLabel {
+        left: -30px;
+    }
+}
+
+/*---Joint Meida Queries---*/
+
+@media only screen and (max-width:414px) {
+    #homePageTitle,
+    #carsTitle,
+    #ManufacturersTitle,
+    #mpcTitle {
+        height: 90px;
+        max-width: 300px;
+    }
+}
